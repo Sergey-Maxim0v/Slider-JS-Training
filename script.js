@@ -4,6 +4,7 @@ const poetry = document.querySelector('.poetry')
 const pictures = document.querySelector('.pictures')
 const pictureCount = pictures.querySelectorAll('.picture').length
 const container = document.querySelector('.container')
+let transitionend = true
 
 let activePictureIndex = 0
 
@@ -36,6 +37,9 @@ document.addEventListener('keyup', event => {
 })
 
 document.addEventListener('wheel', event => {
+    if (!transitionend) {
+      return
+    }
     if (event.deltaY < 0) {
       changePicture('up')
       upBtn.classList.add('buttonKey')
@@ -47,6 +51,11 @@ document.addEventListener('wheel', event => {
       upBtn.classList.remove('buttonKey')
       downBtn.classList.remove('buttonKey')
     }, 200)
+    transitionend = false
+})
+
+pictures.addEventListener('transitionend', () => {
+  transitionend = true
 })
 
 function changePicture(direction) {
