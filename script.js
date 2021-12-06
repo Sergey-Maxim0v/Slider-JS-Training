@@ -20,11 +20,34 @@ downBtn.addEventListener('click', () => {
 document.addEventListener('keydown', event => {
   if (event.key === 'ArrowUp') {
     changePicture('up')
+    upBtn.classList.add('buttonKey')
   } else if (event.key === 'ArrowDown') {
     changePicture('down')
+    downBtn.classList.add('buttonKey')
   }
 })
 
+document.addEventListener('keyup', event => {
+  if (event.key === 'ArrowUp') {
+    upBtn.classList.remove('buttonKey')
+  } else if (event.key === 'ArrowDown') {
+    downBtn.classList.remove('buttonKey')
+  }
+})
+
+document.addEventListener('wheel', event => {
+    if (event.deltaY < 0) {
+      changePicture('up')
+      upBtn.classList.add('buttonKey')
+    } else if (event.deltaY > 0) {
+      changePicture('down')
+      downBtn.classList.add('buttonKey')
+    }
+    setTimeout(()=>{
+      upBtn.classList.remove('buttonKey')
+      downBtn.classList.remove('buttonKey')
+    }, 200)
+})
 
 function changePicture(direction) {
   if (direction === 'up') {

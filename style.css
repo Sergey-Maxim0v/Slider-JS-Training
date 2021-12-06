@@ -82,9 +82,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
 }
 
 button:hover {
+  color: #222;
+}
+
+.buttonKey {
+  transition: all 0.2s;
   color: #222;
 }
 
